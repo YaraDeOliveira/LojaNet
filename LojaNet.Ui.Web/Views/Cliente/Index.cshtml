@@ -1,0 +1,17 @@
+﻿@model LojaNet.Models.Cliente
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Clientes</h2>
+
+<a class="btn btn-info" href="/Cliente/Incluir">Novo</a>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
