@@ -7,38 +7,54 @@ namespace LojaNet.BLL {
 
     //Business Logic Layer Tarefa de Validar os dados
     public class ClienteBLL : IClienteDados {
+
+        private ClienteDAL dal;
+        public ClienteBLL() {
+            this.dal = new ClienteDAL();
+        }
         public void Alterar(Cliente cliente) {
-            throw new NotImplementedException();
+            Validar(cliente);
+            if (string.IsNullOrEmpty(cliente.Id)) {
+                throw new Exception("O Id deve ser informado");
+            }
+            dal.Alterar(cliente);
         }
 
         public void Excluir(string id) {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(id)) {
+                throw new Exception("O Id deve ser informado");
+            }
+            dal.Excluir(id);
         }
 
         public void Incluir(Cliente cliente) {
-           if(string.IsNullOrEmpty(cliente.Nome)) {
-                throw new ApplicationException("O nome deve ser informado");
-            }
+            Validar(cliente);
             if (string.IsNullOrEmpty(cliente.Id)) {
                 cliente.Id = Guid.NewGuid().ToString();
             }
 
-            var dal = new ClienteDAL();
             dal.Incluir(cliente);
         }
 
+        
+
         public Cliente ObterPorEmail(string email) {
-            throw new NotImplementedException();
+            return dal.ObterPorEmail(email);
         }
 
         public Cliente ObterPorId(string id) {
-            throw new NotImplementedException();
+            return dal.ObterPorId(id);
         }
 
         public List<Cliente> ObterTodos() {
-            var dal = new ClienteDAL();
             var lista = dal.ObterTodos();
             return lista;
+        }
+
+        private static void Validar(Cliente cliente) {
+            if (string.IsNullOrEmpty(cliente.Nome)) {
+                throw new ApplicationException("O nome deve ser informado");
+            }
         }
     }
 }
