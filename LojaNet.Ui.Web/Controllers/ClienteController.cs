@@ -24,7 +24,9 @@ namespace LojaNet.Ui.Web.Controllers {
             }
         } 
         public ActionResult Index() {
-            return View();
+            var bll = new ClienteBLL();
+            var lista = bll.ObterTodos();
+            return View(lista);
         }
     }
 }

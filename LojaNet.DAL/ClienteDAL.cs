@@ -32,7 +32,18 @@ namespace LojaNet.DAL {
         }
 
         public List<Cliente> ObterTodos() {
-            throw new NotImplementedException();
+            var lista = new List<Cliente>();
+            using (var reader = DbHelper.ExecuteReader("ClienteListar")) {
+                while (reader.Read()) {
+                    var cliente = new Cliente();
+                    cliente.Id = reader["Id"].ToString();
+                    cliente.Nome = reader["Nome"].ToString();
+                    cliente.Telefone = reader["Telefone"].ToString();
+                    cliente.Email = reader["Email"].ToString();
+                    lista.Add(cliente);
+                }
+            }
+            return lista;
         }
     }
 }
