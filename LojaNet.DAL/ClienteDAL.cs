@@ -15,7 +15,12 @@ namespace LojaNet.DAL {
         }
 
         public void Incluir(Cliente cliente) {
-            
+            DbHelper.ExecuteNonQuery("ClienteIncluir",
+                "@Id", cliente.Id,
+                "@Nome", cliente.Nome,
+                "@Telefone", cliente.Telefone,
+                "@Email", cliente.Email
+                );
         }
 
         public Cliente ObterPorEmail(string email) {
