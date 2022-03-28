@@ -11,29 +11,45 @@ namespace LojaNet.Ui.Web.Controllers {
             bll = new ClienteBLL();
         }
 
+        public ActionResult Detalhes(string id) {
+            var cliente = bll.ObterPorId(id);
+            return View(cliente);
+        }
+
+        public ActionResult Alterar(string id) {
+            var cliente = bll.ObterPorId(id);
+            return View(cliente);
+        }
+        [HttpPost]
+        public ActionResult Alterar(Cliente cliente) {
+            try {
+                bll.Alterar(cliente);
+                return RedirectToAction("Index");
+            } catch (Exception ex) {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View(cliente);
+            }
+        }
         public ActionResult Incluir() {
             var cli = new Cliente();
             return View(cli);
         }
 
-        public ActionResult Detalhes(string id) {
-            var cliente = bll.ObterPorId(id);
-            return View(cliente);
-        }
         [HttpPost]
         public ActionResult Incluir(Cliente cliente) {
             try {
                 bll.Incluir(cliente);
                 return RedirectToAction("Index");
-            } catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 ModelState.AddModelError(string.Empty, ex.Message);
                 return View(cliente);
             }
-        } 
+        }
         public ActionResult Index() {
             var lista = bll.ObterTodos();
             return View(lista);
         }
+
+
     }
 }
