@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using LojaNet.Models;
 using LojaNet.BLL;
+using Microsoft.AspNetCore.Http;
 
 namespace LojaNet.Ui.Web.Controllers {
     public class ClienteController : Controller {
@@ -49,7 +50,21 @@ namespace LojaNet.Ui.Web.Controllers {
             var lista = bll.ObterTodos();
             return View(lista);
         }
-
+        public ActionResult Excluir (string id) {
+            var cliente = bll.ObterPorId(id);
+            return View(cliente);
+        }
+        [HttpPost]
+        public ActionResult Excluir(string id, IFormCollection form) {
+            try {
+                bll.Excluir(id);
+                return RedirectToAction("Index");
+            } catch (Exception ex) {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                var cliente = bll.ObterPorId(id);
+                return View(cliente);
+            }
+        }
 
     }
 }
