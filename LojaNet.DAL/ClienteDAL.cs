@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using LojaNet.Models;
+using Microsoft.AspNetCore.Http;
+using System.Web;
 
 namespace LojaNet.DAL {
     public class ClienteDAL : IClienteDados {
@@ -16,7 +18,11 @@ namespace LojaNet.DAL {
         }
 
         public void Excluir(string id) {
-           DbHelper.ExecuteNonQuery("ClienteExcluir", "@Id", id);
+
+            //string arquivo = HttpContext.Current.Server.MapPath(~/App_data/Cliente_" + Id + ".xml");
+            Cliente cliente = ObterPorId(id);
+            SerializadorHelper.Serializar(@"C:\dados\teste.xml", cliente);
+            DbHelper.ExecuteNonQuery("ClienteExcluir", "@Id", id);
         }
 
         public void Incluir(Cliente cliente) {
