@@ -8,7 +8,7 @@ using System.Data.SqlTypes;
 
 namespace LojaNetF.DAL {
     public static class DbHelper {
-        private static string conexao {
+        public static string conexao {
             get {
                 return @"Data Source = LOCALHOST\SQLEXPRESS; 
                          Initial Catalog=LojaNetDb;

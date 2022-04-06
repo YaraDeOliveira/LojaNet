@@ -58,9 +58,6 @@ namespace LojaNetF.Test {
         }
 
 
-
-
-
         [TestMethod]
         public void IncluirNomeNullTest() {
             var cliente = new Cliente() {
