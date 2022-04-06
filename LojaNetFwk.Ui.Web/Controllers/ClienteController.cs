@@ -1,4 +1,5 @@
 ﻿using LojaNetF.BLL;
+using LojaNetF.DAL;
 using LojaNetF.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace LojaNetFwk.Ui.Web.Controllers
         // GET: Cliente
         private ClienteBLL bll;
         public ClienteController() {
-            bll = new ClienteBLL();
+            var dal = new ClienteDAL();
+            bll = new ClienteBLL(dal);
         }
 
         public ActionResult Detalhes(string id) {

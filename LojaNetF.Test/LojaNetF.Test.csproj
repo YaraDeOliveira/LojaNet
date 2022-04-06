@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteBLLTest.cs" />
     <Compile Include="ClienteDALTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LojaNetF.BLL\LojaNetF.BLL.csproj">
+      <Project>{16f1deb3-1517-4f83-938d-af69af4ffdfe}</Project>
+      <Name>LojaNetF.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LojaNetF.DAL\LojaNetF.DAL.csproj">
       <Project>{ee2c9da2-5460-4270-8a78-cd709bd0a47d}</Project>
       <Name>LojaNetF.DAL</Name>
