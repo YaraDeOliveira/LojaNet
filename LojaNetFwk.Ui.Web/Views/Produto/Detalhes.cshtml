@@ -1,0 +1,23 @@
+﻿@model LojaNetF.Models.Produto
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Dados do Produto</h2>
+
+<dl>
+    <dt>Nome:</dt>
+    <dd>@Model.Nome</dd>
+
+    <dt>Preço:</dt>
+    <dd>@Model.Preco.ToString("c")</dd>
+
+
+</dl>
+
+<div>
+    <a href="/Produto/Index" class="btn btn-dark">Voltar</a>
+    <a href="/Produto/Alterar/@Model.Id" class="btn btn-dark">Alterar</a>
+    <a href="/Produto/Excluir/@Model.Id" class="btn btn-dark">Excluir</a>
+</div>
