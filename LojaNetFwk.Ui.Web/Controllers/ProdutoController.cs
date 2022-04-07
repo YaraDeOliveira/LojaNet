@@ -1,57 +1,52 @@
-﻿using LojaNetF.BLL;
-using LojaNetF.DAL;
-using LojaNetF.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LojaNetF.Models;
+
 
 namespace LojaNetFwk.Ui.Web.Controllers
 {
-    public class ClienteController : Controller {
-
-        private IClienteDados bll;
-
-        // GET: Cliente
-
-        public ClienteController() {
-            
-            bll = AppContainer.ObterClienteBLL();
+    public class ProdutoController : Controller
+    {
+        private IProdutosDados bll;
+        public ProdutoController() {
+            bll = AppContainer.ObterProdutoBLL();
         }
 
         public ActionResult Detalhes(string id) {
-            var cliente = bll.ObterPorId(id);
-            return View(cliente);
+            var produto = bll.ObterPorId(id);
+            return View(produto);
         }
 
         public ActionResult Alterar(string id) {
-            var cliente = bll.ObterPorId(id);
-            return View(cliente);
+            var produto = bll.ObterPorId(id);
+            return View(produto);
         }
         [HttpPost]
-        public ActionResult Alterar(Cliente cliente) {
+        public ActionResult Alterar(Produto produto) {
             try {
-                bll.Alterar(cliente);
+                bll.Alterar(produto);
                 return RedirectToAction("Index");
             } catch (Exception ex) {
                 ModelState.AddModelError(string.Empty, ex.Message);
-                return View(cliente);
+                return View(produto);
             }
         }
         public ActionResult Incluir() {
-            var cli = new Cliente();
-            return View(cli);
+            var produto = new Produto();
+            return View(produto);
         }
 
         [HttpPost]
-        public ActionResult Incluir(Cliente cliente) {
+        public ActionResult Incluir(Produto produto) {
             try {
-                bll.Incluir(cliente);
+                bll.Incluir(produto);
                 return RedirectToAction("Index");
             } catch (Exception ex) {
                 ModelState.AddModelError(string.Empty, ex.Message);
-                return View(cliente);
+                return View(produto);
             }
         }
         public ActionResult Index() {
@@ -59,8 +54,8 @@ namespace LojaNetFwk.Ui.Web.Controllers
             return View(lista);
         }
         public ActionResult Excluir(string id) {
-            var cliente = bll.ObterPorId(id);
-            return View(cliente);
+            var produto = bll.ObterPorId(id);
+            return View(produto);
         }
         [HttpPost]
         public ActionResult Excluir(string id, FormCollection form) {
@@ -69,8 +64,8 @@ namespace LojaNetFwk.Ui.Web.Controllers
                 return RedirectToAction("Index");
             } catch (Exception ex) {
                 ModelState.AddModelError(string.Empty, ex.Message);
-                var cliente = bll.ObterPorId(id);
-                return View(cliente);
+                var produto = bll.ObterPorId(id);
+                return View(produto);
             }
 
         }
