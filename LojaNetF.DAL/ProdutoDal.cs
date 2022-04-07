@@ -5,7 +5,7 @@ using System.Linq;
 
 
 namespace LojaNetF.DAL {
-    public class ProdutoDal : IProdutosDados {
+    public class ProdutoDAL : IProdutosDados {
         private LojaContext db = new LojaContext();
 
         public void Alterar(Produto produto) {
@@ -17,7 +17,6 @@ namespace LojaNetF.DAL {
                 db.SaveChanges();
             }
 
-            
         }
 
         public void Excluir(string id) {
