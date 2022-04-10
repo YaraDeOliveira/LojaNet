@@ -12,7 +12,7 @@ namespace LojaNetF.BLL {
         }
 
         public void Validar(Produto produto) {
-            if (String.IsNullOrEmpty(produto.Nome)) {
+            if (string.IsNullOrEmpty(produto.Nome)) {
                 throw new Exception("O nome deve ser informado");
             }
 
@@ -43,11 +43,11 @@ namespace LojaNetF.BLL {
                 produto.Id = Guid.NewGuid().ToString();
             }
 
-            dal.Incluir(produto); ;
+            dal.Incluir(produto);
         }
 
         public Produto ObterPorId(string id) {
-            return dal.ObterPorId(id); ;
+            return dal.ObterPorId(id); 
         }
 
         public List<Produto> ObterTodos() {
