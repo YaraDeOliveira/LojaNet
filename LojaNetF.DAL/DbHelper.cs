@@ -10,7 +10,7 @@ namespace LojaNetF.DAL {
     public static class DbHelper {
         public static string conexao {
             get {
-                return @"Data Source = LOCALHOST\SQLEXPRESS; 
+                return @"Data Source = DESKTOP-UMN81ED\SQLEXPRESS; 
                          Initial Catalog=LojaNetDb;
                          Integrated Security=true";   
 
