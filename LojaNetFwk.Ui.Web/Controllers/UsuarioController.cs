@@ -22,7 +22,25 @@ namespace LojaNetFwk.Ui.Web.Controllers
         [HttpPost]
         public ActionResult Login (LoginViewModel login)
         {
-            return View();
+            var usuarioStore = new UserStore<IdentityUser>();
+            var usuarioGerenciador = new UserManager<IdentityUser>(usuarioStore);
+
+            var usuario = usuarioGerenciador.Find(login.Nome, login.Senha);
+
+            if (usuario == null)
+            {
+                ModelState.AddModelError("", "Usuário ou senha inválida");
+            }
+            else
+            {
+                var gerenciadorDeAutenticacao = HttpContext.GetOwinContext().Authentication;
+                var identidade = usuarioGerenciador.CreateIdentity(usuario, DefaultAuthenticationTypes.ApplicationCookie);
+                gerenciadorDeAutenticacao.SignIn(new AuthenticationProperties { }, identidade);
+                Response.Redirect("~/");
+            }
+
+
+            return View(login);
 
         }
 

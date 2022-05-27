@@ -23,6 +23,18 @@
                     <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
                     <li>@Html.ActionLink("Produtos", "Index", "Produto")</li>
                     <li>@Html.ActionLink("Pedidos", "Index", "Pedido")</li>
+
+                    <li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @Html.ActionLink(User.Identity.Name + " - Logout", "Logout", "Usuario")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Login", "Login", "Usuario")
+                        }
+
+                    </li>
                 </ul>
             </div>
         </div>
