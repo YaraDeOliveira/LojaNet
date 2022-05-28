@@ -17,16 +17,24 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Model.Data.ToString("d");
+                @Model.Data.ToString("d")
             </div>
         </div>
 
-      
+
         <div class="form-group">
-            @Html.LabelFor(model => model.ClienteId,"Cliente:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ClienteId, "Cliente:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ClienteId, new SelectList(Model.Clientes, "Id", "Nome", Model.ClienteId), new {@class="form-control"})
+                @Html.DropDownListFor(model => model.ClienteId, new SelectList(Model.Clientes, "Id", "Nome", Model.ClienteId), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FormaPagamento, "Forma de Pagamento:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.FormaPagamento, new SelectList(Model.FormasPagamento, Model.FormaPagamento), new { @class = "form-control" })
+        
             </div>
         </div>
 
