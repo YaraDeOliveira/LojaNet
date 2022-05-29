@@ -14,9 +14,11 @@ namespace LojaNetFwk.Ui.Web.Controllers
         public ActionResult Incluir()
         {
             var bllCliente = AppContainer.ObterClienteBLL();
+            var bllProduto = AppContainer.ObterProdutoBLL();
             
             var pedido = new PedidoViewModel();
             pedido.Clientes = bllCliente.ObterTodos();
+            pedido.Produtos = bllProduto.ObterTodos();
             pedido.FormasPagamento = Enum.GetNames(typeof(FormaPagtoEnum)).ToList();
             pedido.Items.Add(new PedidoViewModel.Item()
             {

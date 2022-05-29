@@ -17,6 +17,9 @@ namespace LojaNetFwk.Ui.Web.Models
             this.Data = DateTime.Now;
         }
 
+        public string NovoItemProdutoId { get; set; }
+        public int NovoItemQuantidade { get; set; }
+
         public string Id { get; set; }
         public DateTime Data { get; set; }
         public List<Cliente> Clientes { get; set; }
