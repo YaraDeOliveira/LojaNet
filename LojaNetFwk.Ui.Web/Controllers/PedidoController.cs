@@ -10,6 +10,7 @@ namespace LojaNetFwk.Ui.Web.Controllers
 {
     public class PedidoController : Controller
     {
+
         // GET: Pedido
         public ActionResult Incluir()
         {
@@ -44,6 +45,26 @@ namespace LojaNetFwk.Ui.Web.Controllers
                 Valor = 320
             });
 
+            return View(pedido);
+        }
+
+        [HttpPost]  
+        public ActionResult Incluir(PedidoViewModel pedido)
+        {
+
+            if (Request.Form["incluirProduto"] == "Incluir")
+            {
+                var item = new PedidoViewModel.Item();
+                item.ProdutoId = pedido.NovoItemProdutoId;
+                item.Quantidade = pedido.NovoItemQuantidade;
+
+                var bllProduto = AppContainer.ObterProdutoBLL();
+                var produto = bllProduto.ObterPorId(item.ProdutoId);
+                item.Valor = produto.Preco;
+                item.ProdutoNome = produto.Nome;
+                pedido.Items.Add(item);
+
+            }
             return View(pedido);
         }
     }

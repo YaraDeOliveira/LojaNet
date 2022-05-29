@@ -68,7 +68,7 @@
                 <h2>Formulário para inclusão</h2>
                 @Html.DropDownListFor(model => model.NovoItemProdutoId, new SelectList(Model.Produtos, "Id","Nome"), new {@class = "form-control", style = "float:left;margin-right:10px" })
                 @Html.EditorFor(model => model.NovoItemQuantidade, new {htmlAtributtes = new {@class = "form-control", style = "width:70px; float:left;margin-right:10px"}})
-                <button type="submit" value="Adicionar" class="btn btn-default">Adicionar</button>
+                <input type="submit" name ="incluirProduto" value="Incluir" class="btn btn-default"/>
 
             </div>
         </div>
@@ -84,6 +84,13 @@
 
                 @for(int i=0; i < Model.Items.Count; i++)
                 {
+
+                    @Html.HiddenFor(model => model.Items[i].ProdutoId)
+                    @Html.HiddenFor(model => model.Items[i].ProdutoNome)
+                    @Html.HiddenFor(model => model.Items[i].Quantidade)
+                    @Html.HiddenFor(model => model.Items[i].Valor)
+
+
                     <tr>
                         <td>@Model.Items[i].ProdutoNome</td>
                         <td class="celula-numero">@Model.Items[i].Quantidade</td>
@@ -102,7 +109,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Incluir" class="btn btn-default" />
             </div>
         </div>
     </div>
