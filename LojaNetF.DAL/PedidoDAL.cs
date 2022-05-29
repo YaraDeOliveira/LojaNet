@@ -41,6 +41,7 @@ namespace LojaNetF.DAL
 
                 cmd1.Parameters.AddWithValue("Data", pedido.Data);
                 cmd1.Parameters.AddWithValue("ClienteId", pedido.Cliente.Id);
+                cmd1.Parameters.AddWithValue("FormaPagamentoId", pedido.FormaPagto);
 
                 pedido.Id = Convert.ToInt32(cmd1.ExecuteScalar());
 
@@ -49,12 +50,17 @@ namespace LojaNetF.DAL
                 cmd2.Parameters.AddWithValue("@Ordem", 0);
                 cmd2.Parameters.AddWithValue("@Quantidade", 0);
                 cmd2.Parameters.AddWithValue("@Preco", Convert.ToDecimal(0));
+                cmd2.Parameters.AddWithValue("@ProdutoId", string.Empty);
+
+
                 foreach (var item in pedido.Items)
                 {
+                    cmd2.Parameters["@ProdutoId"].Value = item.Produto.Id;
                     cmd2.Parameters["@Ordem"].Value = ordem;
                     cmd2.Parameters["@Quantidade"].Value = item.Quantidade;
                     cmd2.Parameters["@Preco"].Value = item.Preco;
                     cmd2.ExecuteNonQuery();
+                    ordem = ordem + 1;
                 }
                 tx.Commit();
             }

@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="ClienteBLLTest.cs" />
     <Compile Include="ClienteDALTest.cs" />
+    <Compile Include="PedidoUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProdutoDALTest.cs" />
   </ItemGroup>
